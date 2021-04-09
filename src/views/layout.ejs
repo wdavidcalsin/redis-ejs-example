@@ -1,1 +1,37 @@
-<h1><%= _locals.title %></h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>
+    <%= _locals.title %>
+  </h1>
+  <br />
+  <br />
+  <form action="/save" method="post">
+    <label for="">User:
+      <input type="text" name="user" required/>
+    </label>
+    </p>
+    <label for="">Password:
+      <input type="password" name="password" required/>
+    </label>
+    </p>
+    <button type="submit">Save</button>
+  </form>
+
+  <%- include('index') %>
+
+  <ul>
+    <% for (let i in data){%>
+      <li><%= data[i].user %></li>
+  <%} %>
+  </ul>
+</body>
+
+</html>
