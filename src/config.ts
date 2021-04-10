@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import bodyParser from 'body-parser';
-import { type } from 'os';
+import { getData, setData } from './redis';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,6 +34,9 @@ app.get('/', function (req, res) {
 app.post('/save', (req: Request, res: Response) => {
   console.log('Se pidio una peticion', req.body.user, req.body.password);
   data = [...data, { user: req.body.user, password: req.body.password }];
+
+  setData(req.body.user, req.body.password);
+  getData();
   res.redirect('/');
 });
 
