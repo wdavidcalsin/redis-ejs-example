@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
     data: data,
     message: 'This is a message',
   };
+
   res.render('layout');
 });
 
@@ -37,6 +38,7 @@ app.post('/save', (req: Request, res: Response) => {
 
   setData(req.body.user, req.body.password);
   getData();
+
   res.redirect('/');
 });
 
