@@ -3,6 +3,9 @@ import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import bodyParser from 'body-parser';
 import { getData, setData } from './redis';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
