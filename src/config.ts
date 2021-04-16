@@ -25,14 +25,14 @@ app.use(expressEjsLayouts);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
+app.get('/view', function (req, res) {
   res.locals = {
     title: 'Simple example of REDIS-EJS-NODEJS',
     data: data,
     message: 'This is a message',
   };
 
-  res.render('layout');
+  res.send('david');
 });
 
 app.post('/save', (req: Request, res: Response) => {

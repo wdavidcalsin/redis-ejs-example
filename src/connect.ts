@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 
-export default () => {
+type TInput = {
+  db: string;
+};
+
+export default ({ db }: TInput) => {
   const connect = () => {
     mongoose
-      .connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true })
+      .connect(db, { useNewUrlParser: true })
       .then(() => {
         return console.log(`Successfully connected to BD`);
       })
