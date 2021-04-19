@@ -14,19 +14,6 @@ export default ({ app }: TRoutesInput) => {
 
   app.use(expressEjsLayouts);
 
-  app.post('/api/user', async (req, res) => {
-    console.log('Se pidio una peticion', req.body.user, req.body.password);
-
-    await UserController.CreateUser({
-      user: req.body.user,
-      password: req.body.password,
-    });
-
-    data = [...data, { user: req.body.user, password: req.body.password }];
-
-    res.redirect('/');
-  });
-
   app.get('/view', function (req, res) {
     res.locals = {
       title: 'Simple example of REDIS-EJS-NODEJS',
@@ -39,6 +26,19 @@ export default ({ app }: TRoutesInput) => {
 
   app.get('/removeAll', (req: Request, res: Response) => {
     data = [];
+    res.redirect('/');
+  });
+
+  app.post('/api/user', async (req, res) => {
+    console.log('Se pidio una peticion', req.body.user, req.body.password);
+
+    await UserController.CreateUser({
+      user: req.body.user,
+      password: req.body.password,
+    });
+
+    data = [...data, { user: req.body.user, password: req.body.password }];
+
     res.redirect('/');
   });
 };

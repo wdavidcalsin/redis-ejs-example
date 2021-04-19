@@ -10,5 +10,4 @@ const UserSchema: Schema = new Schema({
   password: { type: String, required: true },
 });
 
-// Export the model and return your IUser interface
 export default mongoose.model<IUser>('User', UserSchema);
