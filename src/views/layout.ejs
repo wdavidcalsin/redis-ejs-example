@@ -5,6 +5,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <style>
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+    }
+
+    table td, table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table tr:nth-child(even){background-color: #f2f2f2;}
+
+    table tr:hover {background-color: #ddd;}
+
+    table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -27,11 +50,33 @@
 
   <%- include('index') %>
 
-  <ul>
-    <% for (let i in data){%>
-      <li><%= data[i].user %></li>
-  <%} %>
-  </ul>
+
+  <h3>Table</h3>
+  
+  <% if(data){ %>
+       <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(function(e,i){ %>
+          <tr>
+          <td><%= e.user %></td>
+          <td><%= e.password %></td>
+          <td><button>Remove</button></td>
+          <%
+        });
+        %>
+        </tr>
+      </tbody>
+    </table>
+    <%
+  };
+  %>
 </body>
 
 </html>
