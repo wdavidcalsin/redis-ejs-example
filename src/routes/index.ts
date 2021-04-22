@@ -1,18 +1,17 @@
 import { Request, Response } from 'express';
-import expressEjsLayouts from 'express-ejs-layouts';
 
 import { TRoutesInput } from '../types/routes.type';
 import UserController from '../controllers/user.controller';
 import { IData } from '../types/user.type';
-import path from 'path';
 
-export default ({ app }: TRoutesInput) => {
+const FirtsData = async () => {
+  return await UserController.AllUser();
+};
+
+export default async ({ app }: TRoutesInput) => {
   let data: Array<IData> = [];
 
-  app.set('views', path.join(__dirname, '../views'));
-  app.set('view engine', 'ejs');
-
-  app.use(expressEjsLayouts);
+  data = await FirtsData();
 
   app.get('/view', function (req, res) {
     res.locals = {
@@ -29,6 +28,14 @@ export default ({ app }: TRoutesInput) => {
     res.redirect('/');
   });
 
+  app.post('/removeitem:id', async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    await UserController.RemoveUser(id, req.body);
+    console.log('remove item: ', id);
+    res.redirect('/');
+  });
+
   app.post('/api/user', async (req, res) => {
     console.log('Se pidio una peticion', req.body.user, req.body.password);
 
@@ -40,5 +47,12 @@ export default ({ app }: TRoutesInput) => {
     data = [...data, { user: req.body.user, password: req.body.password }];
 
     res.redirect('/');
+  });
+
+  app.get('/api/alldata', async (req, res) => {
+    console.log('Se pidio una peticion allData');
+
+    //  await UserController.AllUser();
+    console.log(await UserController.AllUser());
   });
 };

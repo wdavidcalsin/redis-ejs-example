@@ -17,10 +17,29 @@ async function CreateUser({
     });
 }
 
+async function AllUser() {
+  let allData = User.find({}, (err, users) => {
+    return { users: users };
+  });
+
+  return allData;
+  // console.log('allUser');
+}
+
+async function RemoveUser(id: string, body: any): Promise<void> {
+  User.findByIdAndRemove(id, body, function (err, data) {
+    if (!err) {
+      console.log('Deleted');
+    }
+  });
+}
+
 async function DeleteAllUser(): Promise<String> {
   return 'Suucces Delete All';
 }
 
 export default {
   CreateUser,
+  AllUser,
+  RemoveUser,
 };
