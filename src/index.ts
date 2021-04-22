@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import connect from './connect';
 import routes from './routes';
+import path from 'path';
+import expressEjsLayouts from 'express-ejs-layouts';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +13,11 @@ dotenv.config();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
+
+app.use(expressEjsLayouts);
 
 app.get('/', (req: Request, res: Response) => res.redirect('/view'));
 
