@@ -27,11 +27,11 @@ async function AllUser() {
 }
 
 async function RemoveUser(id: string, body: any): Promise<void> {
-  User.findByIdAndRemove(id, body, function (err, data) {
-    if (!err) {
-      console.log('Deleted');
-    }
-  });
+  User.findOneAndRemove(
+    { _id: id },
+    null,
+    (err) => !err && console.log('Delete'),
+  );
 }
 
 async function DeleteAllUser(): Promise<String> {

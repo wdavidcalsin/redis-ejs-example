@@ -32,8 +32,8 @@ export default async ({ app }: TRoutesInput) => {
     const { id } = req.params;
 
     await UserController.RemoveUser(id, req.body);
-    console.log('remove item: ', id);
-    res.redirect('/');
+    // console.log('remove item: ', id);
+    res.send('Eliminado desde el router');
   });
 
   app.post('/api/user', async (req, res) => {
