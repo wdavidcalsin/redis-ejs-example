@@ -29,11 +29,12 @@ export default async ({ app }: TRoutesInput) => {
   });
 
   app.post('/removeitem:id', async (req: Request, res: Response) => {
-    const { id } = req.params;
+    let { id } = req.params;
 
-    await UserController.RemoveUser(id, req.body);
-    // console.log('remove item: ', id);
-    res.send('Eliminado desde el router');
+    await UserController.RemoveUser(id);
+
+    console.log('deleting' + id);
+    res.send('delete' + id);
   });
 
   app.post('/api/user', async (req, res) => {

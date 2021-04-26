@@ -26,12 +26,8 @@ async function AllUser() {
   // console.log('allUser');
 }
 
-async function RemoveUser(id: string, body: any): Promise<void> {
-  User.findOneAndRemove(
-    { _id: id },
-    null,
-    (err) => !err && console.log('Delete'),
-  );
+async function RemoveUser(id: any): Promise<void> {
+  await User.deleteOne({ _id: id });
 }
 
 async function DeleteAllUser(): Promise<String> {
