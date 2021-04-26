@@ -1,15 +1,11 @@
-POST http://localhost:3000/save HTTP/1.1
+###
+POST http://localhost:3000/api/user HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+    "user": "yony",
+    "password": "yony123"
 }
 
 ###
-POST http://localhost:3000/removeitem:6080e369eb801508bd659068 HTTP/1.1
-# content-type: application/json
-
-# {
-#     "id": "sample",
-# }
+POST http://localhost:3000/removeitem:608307b56ccc01108f0bff7d HTTP/1.1
