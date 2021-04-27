@@ -31,10 +31,10 @@ export default async ({ app }: TRoutesInput) => {
   app.post('/removeitem:id', async (req: Request, res: Response) => {
     let { id } = req.params;
 
-    await UserController.RemoveUser(id);
+    let doc = await UserController.RemoveUser(id);
 
-    console.log('deleting' + id);
-    res.send('delete' + id);
+    console.log('deleting: ' + (await doc));
+    res.send('-- Find --');
   });
 
   app.post('/api/user', async (req, res) => {
