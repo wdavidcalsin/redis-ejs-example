@@ -13,11 +13,15 @@ export default async ({ app }: TRoutesInput) => {
 
   data = await FirtsData();
 
+  const click = () => {
+    console.log('click');
+  };
+
   app.get('/view', function (req, res) {
     res.locals = {
       title: 'Simple example of REDIS-EJS-NODEJS',
       data: data,
-      message: 'This is a message',
+      functioClick: click,
     };
 
     res.render('layout');
@@ -33,7 +37,7 @@ export default async ({ app }: TRoutesInput) => {
 
     let doc = await UserController.RemoveUser(id);
 
-    console.log('deleting: ' + (await doc));
+    console.log('deleting: ' + JSON.stringify(doc));
     res.send('-- Find --');
   });
 
