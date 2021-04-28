@@ -49,12 +49,12 @@
   </form>
 
   <%- include('index') %>
-
-
+  
+  
   <h3>Table</h3>
   
   <% if(data){ %>
-       <table class="table table-striped">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Username</th>
@@ -65,10 +65,10 @@
       <tbody>
         <% data.forEach(function(e,i){ %>
           <tr>
-          <td><%= e.user %></td>
-          <td><%= e.password %></td>
-          <td><button>Remove</button></td>
-          <%
+            <td><%= e.user %></td>
+            <td><%= e.password %></td>
+            <td><button id='btn'>Remove</button></td>
+            <%
         });
         %>
         </tr>
@@ -78,5 +78,6 @@
   };
   %>
 </body>
+<%- include('script') %>
 
 </html>

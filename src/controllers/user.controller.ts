@@ -1,6 +1,6 @@
 import User, { IUser } from '../models/user.model';
-import { CreateQuery, Types } from 'mongoose';
-import { ObjectID } from 'mongodb';
+import mongoose, { CreateQuery, Types, mongo } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 async function CreateUser({
   user,
@@ -28,12 +28,14 @@ async function AllUser() {
 }
 
 async function RemoveUser(id: string): Promise<any> {
-  let dataDoc = await User.findOne({
-    _id: new ObjectID(id),
+  const query = User.deleteOne({
+    // _id: Types.ObjectId.createFromHexString('6080e369eb801508bd659068'),
+    _id: Types.ObjectId.createFromHexString(id),
   });
 
-  console.log(dataDoc);
-  return dataDoc;
+  // console.log(query);
+
+  return query;
 }
 
 async function DeleteAllUser(): Promise<String> {
